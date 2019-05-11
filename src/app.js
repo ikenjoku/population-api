@@ -4,6 +4,8 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import dotenv from 'dotenv';
+import modules from './modules';
+
 
 dotenv.config();
 const app = express();
@@ -14,11 +16,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // connect to database
-app.use((req, res, next) => {
-  return res.status(200).send("Working");
-});
-
-
 
 // handle routes
+modules(app);
+
 export default app;

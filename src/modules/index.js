@@ -1,4 +1,4 @@
-import LocationRouter from './location/location';
+import LocationRouter from './location';
 
 const APIPREFIX = '/api/v1';
 

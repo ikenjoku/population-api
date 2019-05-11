@@ -1,5 +1,21 @@
 import mongoose from 'mongoose';
 
+const SubLocationSchema = new mongoose.Schema({
+  total: Number,
+  male: {
+    type: Number,
+    required: true
+  },
+  female: {
+    type: Number,
+    required: true
+  },
+  isSubLocation: {
+    type: Boolean,
+    default: false
+  }
+});
+
 const LocationSchema = new mongoose.Schema({
   total: Number,
   male: {
@@ -10,11 +26,7 @@ const LocationSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  subLocations: [LocationSchema],
-  isSubLocation: {
-    type: Boolean,
-    default: false
-  }
+  subLocations: [SubLocationSchema],
 });
 
 const Location = mongoose.model('Location', LocationSchema);
