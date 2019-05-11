@@ -1,0 +1,22 @@
+{
+  "name": "population-api",
+  "version": "1.0.0",
+  "description": "Population Management System",
+  "main": "app.js",
+  "scripts": {
+    "test": "yarn test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ikenjoku/population-api.git"
+  },
+  "keywords": [
+    "population"
+  ],
+  "author": "Ikechukwu Njoku",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ikenjoku/population-api/issues"
+  },
+  "homepage": "https://github.com/ikenjoku/population-api#readme"
+}
