@@ -4,6 +4,7 @@
   "description": "Population Management System",
   "main": "app.js",
   "scripts": {
+    "dev": "NODE_ENV=development nodemon --exec babel-node src/bin/www.js",
     "test": "yarn test"
   },
   "repository": {
@@ -18,5 +19,17 @@
   "bugs": {
     "url": "https://github.com/ikenjoku/population-api/issues"
   },
-  "homepage": "https://github.com/ikenjoku/population-api#readme"
+  "homepage": "https://github.com/ikenjoku/population-api#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.5.7",
+    "morgan": "^1.9.1"
+  }
 }
