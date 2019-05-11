@@ -1,9 +1,17 @@
+import { truncate } from 'fs';
+
 const mongoose = require('mongoose');
 
 const LocationSchema = new mongoose.Schema({
   total: Number,
-  male: Number,
-  female: Number,
+  male: {
+    type: Number,
+    required: true
+  },
+  female: {
+    type: Number,
+    required: true
+  },
   subLocations: [LocationSchema],
   isSubLocation: {
     type: Boolean,
