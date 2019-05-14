@@ -9,7 +9,7 @@ Router.post(
 );
 
 Router.post(
-  '/locations',
+  '/sublocation',
   LocationController.createSublocation,
 );
 

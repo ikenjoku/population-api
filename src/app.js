@@ -15,8 +15,12 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// connect to database
-
+// handle 404 error
+app.use((req, res, next) => {
+  const pageNotFound = new Error('There is no page here');
+  pageNotFound.status = 404;
+  next(pageNotFound);
+});
 // handle routes
 modules(app);
 
