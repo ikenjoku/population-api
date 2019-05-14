@@ -15,6 +15,20 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// connect to database
+if (process.env.NODE_ENV === 'production') {
+  mongoose.connect(process.env.MONGO_PROD_DB_URL, { useNewUrlParser: true });
+} else if (process.env.NODE_ENV === 'development') {
+  mongoose.connect(process.env.MONGO_DEV_DB_URL, { useNewUrlParser: true });
+  const db = mongoose.connection;
+  // mongo logs
+  db.on('error', console.error.bind(console, 'connection error: '));
+  db.once('open', () => { console.log('DB connection established'); });
+} else {
+  mongoose.connect(process.env.MONGO_TEST_DB_URL, { useNewUrlParser: true });
+}
+
+// handle routes
 modules(app);
 
 // handle 404 error
