@@ -8,9 +8,24 @@ Router.post(
   LocationController.createLocation,
 );
 
+Router.post(
+  '/locations',
+  LocationController.createSublocation,
+);
+
 Router.get(
   '/locations',
   LocationController.getLocations,
+);
+
+Router.put(
+  '/locations/:locationId',
+  LocationController.updateLocation,
+);
+
+Router.delete(
+  '/locations/:locationId',
+  LocationController.deleteLocation,
 );
 
 export default Router;
