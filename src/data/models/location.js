@@ -17,6 +17,12 @@ const LocationSchema = new mongoose.Schema({
   locations: [],
 });
 
+LocationSchema.pre('save', function(next){
+  const location = this;
+  location.total = location.male + location.female;
+  next();
+});
+
 const Location = mongoose.model('Location', LocationSchema);
 
 export default Location;
