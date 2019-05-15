@@ -4,7 +4,7 @@ import validateLocation from '../../middlewares/validateLocation';
 
 const Router = express.Router();
 
-router.param("locationId", validateLocation);
+Router.param("locationId", validateLocation);
 
 Router.post(
   '/locations',
@@ -12,7 +12,7 @@ Router.post(
 );
 
 Router.post(
-  '/locations/:locationId/sublocation',
+  '/locations/:locationId/sublocations',
   LocationController.createSublocation,
 );
 
@@ -22,7 +22,7 @@ Router.get(
 );
 
 Router.put(
-  '/locations/:C',
+  '/locations/:locationId',
   LocationController.updateLocation,
 );
 
