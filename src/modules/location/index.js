@@ -6,7 +6,7 @@ import validateLocation from '../../middlewares/validateLocation';
 
 const Router = express.Router();
 
-Router.param("locationId", validateLocation);
+Router.param('locationId', validateLocation);
 
 Router.post(
   '/locations',
