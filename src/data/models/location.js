@@ -27,6 +27,11 @@ LocationSchema.pre('save', function(next){
   next();
 });
 
+LocationSchema.methods.update = function(updates, callback){
+  Object.assign(this, updates);
+  this.save(callback);
+};
+
 const Location = mongoose.model('Location', LocationSchema);
 
 export default Location;
