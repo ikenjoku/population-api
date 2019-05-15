@@ -48,8 +48,24 @@ class LocationController {
   }
 
   static summarizeLocationData (req, res, next) {
-    return res.status(200).json({
-      message: 'Summarize Location Data here',
+    Location.find({})
+    .sort({createdAt: -1})
+    .exec(function(err, locations){
+        if(err) return next(err);
+        let male = 0;
+        let female = 0;
+        let total = 0;
+        locations.forEach(location => {
+          male += location.male;
+          female += location.female;
+          total += location.total;
+        });
+        return res.status(200).json({
+          count: `${locations.length} Locations`,
+          total,
+          male,
+          female,
+        });
     });
   }
 
