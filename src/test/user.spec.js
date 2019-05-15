@@ -26,7 +26,7 @@ describe('Authentication', () => {
     const db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error'));
     db.once('open', () => {
-      console.log('We are connected to test database!');
+      console.log('Done: Clean up database');
       db.db.dropDatabase(() => {
         done();
       });
