@@ -41,7 +41,7 @@ class LocationController {
   }
 
   static getLocation(req, res, next) {
-    return res.status(201).json({
+    return res.status(200).json({
       message: 'Successfully retreived location',
       location: req.location
     });
@@ -54,8 +54,12 @@ class LocationController {
   }
 
   static updateLocation(req, res, next) {
-    return res.status(200).json({
-      message: 'update Locations',
+    req.location.update(req.body, (err, result) => {
+      if (err) return next(err);
+      return res.status(200).json({
+        message: 'Successfully updated location',
+        location: result
+      });
     });
   }
 
