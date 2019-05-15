@@ -8,12 +8,12 @@ class LocationController {
       err.status = 400;
       next(err);
     } else {
-      const newLocation= new Location({ area, male, female });
+      const newLocation = new Location({ area, male, female });
       newLocation.save((err, location) => {
         if (err) return next(err);
         return res.status(201).json({
           message: 'A new location has been created',
-          location
+          location,
         });
       });
     }
@@ -24,38 +24,38 @@ class LocationController {
     req.location.male += male;
     req.location.female += female;
     req.location.locations.push(req.body);
-  req.location.save(function(err, location){
-    if (err) return next(err);
-    res.status(201).json(location);
-  })
+    req.location.save((err, location) => {
+      if (err) return next(err);
+      res.status(201).json(location);
+    });
   }
 
   static getAllLocations(req, res, next) {
-    Location.find({}, null, {sort: {area: -1}}, function(err, locations){
-      if(err) return next(err);
+    Location.find({}, null, { sort: { area: -1 } }, (err, locations) => {
+      if (err) return next(err);
       res.status(200).json({
         message: 'All Locations',
-        locations
+        locations,
       });
     });
   }
 
-  static getLocation(req, res, next) {
+  static getLocation(req, res) {
     return res.status(200).json({
       message: 'Successfully retreived location',
-      location: req.location
+      location: req.location,
     });
   }
 
-  static summarizeLocationData (req, res, next) {
+  static summarizeLocationData(req, res, next) {
     Location.find({})
-    .sort({createdAt: -1})
-    .exec(function(err, locations){
-        if(err) return next(err);
+      .sort({ createdAt: -1 })
+      .exec((err, locations) => {
+        if (err) return next(err);
         let male = 0;
         let female = 0;
         let total = 0;
-        locations.forEach(location => {
+        locations.forEach((location) => {
           male += location.male;
           female += location.female;
           total += location.total;
@@ -66,7 +66,7 @@ class LocationController {
           male,
           female,
         });
-    });
+      });
   }
 
   static updateLocation(req, res, next) {
@@ -74,16 +74,16 @@ class LocationController {
       if (err) return next(err);
       return res.status(200).json({
         message: 'Successfully updated location',
-        location: result
+        result,
       });
     });
   }
 
   static deleteLocation(req, res, next) {
-    req.location.remove(function(err){
+    req.location.remove((err) => {
       if (err) return next(err);
-      res.status(200).json({message: "Successfully removed"});
-    })
+      res.status(200).json({ message: 'Successfully removed' });
+    });
   }
 }
 export default LocationController;
