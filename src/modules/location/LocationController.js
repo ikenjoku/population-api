@@ -12,7 +12,7 @@ class LocationController {
       newLocation.save((err, location) => {
         if (err) return next(err);
         return res.status(201).json({
-          message: 'New Located has been created',
+          message: 'A new location has been created',
           location
         });
       });
