@@ -30,14 +30,31 @@ class LocationController {
   })
   }
 
-  static getLocations(req, res, next) {
+  static getAllLocations(req, res, next) {
+    Location.find({}, null, {sort: {area: -1}}, function(err, locations){
+      if(err) return next(err);
+      res.status(200).json({
+        message: 'All Locations',
+        locations
+      });
+    });
+  }
+
+  static getLocation(req, res, next) {
     return res.status(201).json({
-      message: 'get Locations',
+      message: 'Successfully retreived location',
+      location: req.location
+    });
+  }
+
+  static summarizeLocationData (req, res, next) {
+    return res.status(200).json({
+      message: 'Summarize Location Data here',
     });
   }
 
   static updateLocation(req, res, next) {
-    return res.status(201).json({
+    return res.status(200).json({
       message: 'update Locations',
     });
   }

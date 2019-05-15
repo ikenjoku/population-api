@@ -18,7 +18,17 @@ Router.post(
 
 Router.get(
   '/locations',
-  LocationController.getLocations,
+  LocationController.getAllLocations,
+);
+
+Router.get(
+  '/locations/summary',
+  LocationController.summarizeLocationData,
+);
+
+Router.get(
+  '/locations/:locationId',
+  LocationController.getLocation,
 );
 
 Router.put(
