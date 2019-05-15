@@ -2,6 +2,10 @@ import mongoose, { SchemaTypes } from 'mongoose';
 
 
 const LocationSchema = new mongoose.Schema({
+  area: {
+    type: String,
+    required: true
+  },
   total: {
     type: Number,
     default: 0
