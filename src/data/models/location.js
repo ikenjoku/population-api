@@ -1,23 +1,15 @@
-import mongoose from 'mongoose';
+import mongoose, { SchemaTypes } from 'mongoose';
 
-const SubLocationSchema = new mongoose.Schema({
-  total: Number,
-  male: {
-    type: Number,
-    required: true
-  },
-  female: {
-    type: Number,
-    required: true
-  },
-  isSubLocation: {
-    type: Boolean,
-    default: false
-  }
-});
 
 const LocationSchema = new mongoose.Schema({
-  total: Number,
+  area: {
+    type: String,
+    required: true
+  },
+  total: {
+    type: Number,
+    default: 0
+  },
   male: {
     type: Number,
     required: true
@@ -26,8 +18,19 @@ const LocationSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  subLocations: [SubLocationSchema],
+  locations: [],
 });
+
+LocationSchema.pre('save', function(next){
+  const location = this;
+  location.total = location.male + location.female;
+  next();
+});
+
+LocationSchema.methods.update = function(updates, callback){
+  Object.assign(this, updates);
+  this.save(callback);
+};
 
 const Location = mongoose.model('Location', LocationSchema);
 
