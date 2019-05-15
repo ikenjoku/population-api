@@ -64,9 +64,10 @@ class LocationController {
   }
 
   static deleteLocation(req, res, next) {
-    return res.status(201).json({
-      message: 'delete Locations',
-    });
+    req.location.remove(function(err){
+      if (err) return next(err);
+      res.status(200).json({message: "Successfully removed"});
+    })
   }
 }
 export default LocationController;
